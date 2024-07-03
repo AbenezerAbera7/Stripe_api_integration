@@ -1,3 +1,5 @@
+
+
 ## Prerequisites
 
 - Python 3.x
@@ -23,6 +25,7 @@ scheme
   ```
 
 3. Install the project dependencies
+pip install -r requirements.txt
 
 4. Apply the database migrations:
 
@@ -47,3 +50,6 @@ To run the tests for your Django project:
 python manage.py test
 
 This will run all the tests defined in your project.
+
+
+
