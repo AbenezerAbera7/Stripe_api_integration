@@ -43,10 +43,10 @@ def subscription_data():
             "Plan Name": subscription.plan.nickname if subscription.plan and subscription.plan.nickname else "Unknown",
             "Plan Amount": subscription.plan.amount if subscription.plan and subscription.plan.amount else "Unknown",
             "Billing Cycle": subscription.plan.interval if subscription.plan and subscription.plan.interval else "Unknown",
-            "Start Date": subscription.start_date if subscription.start_date else "Unknown",
-            "End Date": subscription.current_period_end if subscription.current_period_end else "Unknown",
-            "Trial Period": subscription.trial_end - subscription.start_date if subscription.trial_end and subscription.start_date else None,
-            "Renewal Date": subscription.current_period_end if subscription.current_period_end else "Unknown"
+            "Start Date": format_date(subscription.start_date) if subscription.start_date else "Unknown",
+            "End Date": format_date(subscription.current_period_end) if subscription.current_period_end else "Unknown",
+            "Trial Period": subscription.plan.trial_period_days if subscription.plan else None,
+            "Renewal Date": format_date(subscription.current_period_end) if subscription.current_period_end else "Unknown"
         }
         subscription_data.append(subscription_info)
     
@@ -62,7 +62,7 @@ def payment_data():
             "Currency": payment.currency,
             "Payment Method": payment.payment_method if payment.payment_method else "Unknown",
             "Status": payment.status if payment.status else "Unknown",
-            "Payment Date": payment.created if payment.created else "Unknown"
+            "Payment Date": format_date(payment.created) if payment.created else "Unknown"
         }
         payment_data.append(payment_info)
     
@@ -79,15 +79,14 @@ def invoice_data():
             "Amount Paid": invoice.amount_paid,
             "Due Date": invoice.due_date,
             "Status": invoice.status,
-            "Invoice Date": invoice.created
+            "Invoice Date": format_date(invoice.created)
         })
     return invoice_data
 
 def format_date(timestamp):
     date = datetime.datetime.fromtimestamp(timestamp)
-    formatted_date = date.strftime('%Y-%m-%d %H:%M:%S')
+    formatted_date = date.strftime('%Y-%m-%d')
     return formatted_date
-
 def event_data():
     events = stripe.Event.list()
     event_data = []
@@ -96,6 +95,8 @@ def event_data():
             "Event ID": event.id,
             "Type": event.type,
             "Created Date": format_date(event.created),
+            "Object Id":event.data.object.id if event.data and event.data.object else "Unknown",
+            "Livemode":event.livemode,
             "Data Payload": event.data.object.object if event.data and event.data.object else "Unknown"
         }
         event_data.append(event_info)
@@ -175,6 +176,6 @@ def main(key,url):
     insert_data_from_objects(events_sheet,event_data())
 
 if __name__=="__main__":
-    api_key=""
-    sheet_url=""
+    api_key="sk_test_51NiymQKHVQTyd5K6ORso1XHeXEtKwG4Rr2GYHigsfQugFZiWHiRTzXHcHUdLRT1D60Q8qGilFNs0kR76qmIvplfR00AA0zVowZ"
+    sheet_url="https://docs.google.com/spreadsheets/d/1-2mazrc8SZEX5ZuXrtVgRrLmYQCebLh2ChaTRC0iGVI/edit?gid=0#gid=0"
     main(api_key,sheet_url)
