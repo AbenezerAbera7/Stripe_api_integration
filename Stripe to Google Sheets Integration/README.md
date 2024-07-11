@@ -26,25 +26,37 @@ This project aims to develop a system that retrieves data from a user's Stripe a
 
 ## SetupGoogle
 
-    1. Go to the Google Cloud Console: <https://console.cloud.google.com/>.
-    2. Create a new project or select an existing project.
-    3. Enable the Google Sheets API for your project:
-        Click on the "Navigation menu" (☰) in the upper-left corner.
-        Go to "APIs & Services" > "Library".
-        Search for "Google Sheets API" and select it.
-        Click on the "Enable" button.
-    4. Set up Service Account credentials:
-        Click on the "Navigation menu" (☰) in the upper-left corner.
-        Navigate to the "APIs & Services" section and click on "Credentials."
-        Click on the "Create Credentials" button and select "Service Account" from the dropdown menu.
-        Provide a name for the service account and optionally add a description.
-        Click on the "Create" button.
-        On the "Service account permissions" page, click on the "Continue" button.
-        On the "Grant this service account access to project" page, select the "Editor" role from the dropdown menu.
-            The "Editor" role provides full access to the project, including the ability to manage and modify Google Sheets.
-        Click on the "Done" button to create the service account.
-        The service account credentials JSON file will be downloaded to your device.
-        Rename the downloaded JSON file to credentials.json.
+    Set up Service Account credentials:
+
+    Click on the "Navigation menu" (☰) in the upper-left corner.
+
+    Navigate to the "APIs & Services" section and click on "Credentials."
+
+    Click on the "Create Credentials" button and select "Service Account" from the dropdown menu.
+
+    Provide a name for the service account and optionally add a description.
+
+    Click on the "Create" button.
+
+    On the "Service account permissions" page, click on the "Continue" button.
+
+    On the "Grant this service account access to project" page, select the "Editor" role from the dropdown menu.
+
+        The "Editor" role provides full access to the project, including the ability to manage and modify Google Sheets.
+
+    Click on the "Done" button to create the service account. The service account will be created.
+
+    Click on the service account you created.
+
+    In the "Service account details" page, go to the "Keys" section and click on "Add key" -> "Create key".
+
+    Select the key type JSON and click on the "Create" button.
+
+    The service account key file will be downloaded to your device.
+
+    The service account credentials JSON file will be downloaded to your device.
+
+    Rename the downloaded JSON file to credentials.json.
 
     5. Move the credentials.json file to the same directory as your main.py file.
 
