@@ -15,7 +15,7 @@ This project aims to develop a system that retrieves data from a user's Stripe a
 
 1. Clone the repository:
 
-   git clone [https://github.com/your-username/your-repository.git](https://github.com/AbenezerAberaa/Stripe_api_integration)
+   git clone https://github.com/AbenezerAberaa/Stripe_api_integration
 
 2. Navigate to the project directory:
 
